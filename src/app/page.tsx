@@ -4,6 +4,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import { HeroSection } from "@/components/hero-section";
 import { GallerySection } from "@/components/gallery-section";
 import { ProjectsSection } from "@/components/projects-section";
+import { SkillsSection } from "@/components/skills-section";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
 
         {/* About Section without background beams */}
         <AboutSection />
+
+        {/* Skills Section */}
+        <SkillsSection />
 
         {/* Projects Section */}
         <ProjectsSection />
