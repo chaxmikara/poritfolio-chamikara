@@ -3,6 +3,7 @@ import { AboutSection } from "@/components/about-section";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { HeroSection } from "@/components/hero-section";
 import { GallerySection } from "@/components/gallery-section";
+import { ProjectsSection } from "@/components/projects-section";
 
 export default function Home() {
   return (
@@ -15,6 +16,9 @@ export default function Home() {
 
         {/* About Section without background beams */}
         <AboutSection />
+
+        {/* Projects Section */}
+        <ProjectsSection />
 
         {/* Gallery Section */}
         <section id="gallery" className="py-8 md:py-16">

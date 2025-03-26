@@ -78,11 +78,11 @@ export const products = [
         link: "#",
         thumbnail: "/images/gallery/pic14.jpg",
     },
-    {
-        title: "Project Fifteen",
-        link: "#",
-        thumbnail: "/images/gallery/pic15.jpg",
-    },
+    // {
+    //     title: "Project Fifteen",
+    //     link: "#",
+    //     thumbnail: "/images/gallery/pic15.jpg",
+    // },
     {
         title: "Project Sixteen",
         link: "#",
