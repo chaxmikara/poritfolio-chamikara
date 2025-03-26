@@ -9,8 +9,8 @@ import { FooterSection } from "@/components/footer-section";
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col">
+    <div className="min-h-screen font-[family-name:var(--font-geist-sans)] overflow-x-hidden">
+      <main className="flex flex-col w-full">
         {/* Hero Section with animated background */}
         <BackgroundBeamsWithCollision className="min-h-[90vh]">
           <HeroSection />
@@ -26,7 +26,7 @@ export default function Home() {
         <ProjectsSection />
 
         {/* Gallery Section */}
-        <section id="gallery" className="py-8 md:py-16">
+        <section id="gallery" className="py-8 md:py-16 w-full">
           <GallerySection />
         </section>
 

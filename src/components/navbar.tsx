@@ -2,13 +2,15 @@
 
 import React, { useState } from "react";
 import { HoveredLink, Menu, MenuItem } from "./ui/navbar-menu";
-import { ThemeToggle } from "@/components/theme-toggle"; 
+import { ThemeToggle } from "@/components/theme-toggle";
 import { motion, useScroll } from "framer-motion";
+import { Menu as MenuIcon, X } from "lucide-react";
 
 export function Navbar() {
     const [active, setActive] = useState<string | null>(null);
     const { scrollY } = useScroll();
     const [hidden, setHidden] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     React.useEffect(() => {
         return scrollY.onChange(() => {
@@ -23,6 +25,9 @@ export function Navbar() {
     // Utility function to navigate to any section with delay
     const navigateToSection = (sectionId: string, callback?: () => void) => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+
+        // Close mobile menu if open
+        setMobileMenuOpen(false);
 
         // Execute callback after scrolling if provided
         if (callback) {
@@ -44,6 +49,16 @@ export function Navbar() {
         });
     };
 
+    // Mobile navigation links
+    const mobileLinks = [
+        { title: "Home", href: "#", onClick: () => navigateToSection("home") },
+        { title: "About", href: "#about", onClick: () => navigateToSection("about") },
+        { title: "Skills", href: "#skills", onClick: () => navigateToSection("skills") },
+        { title: "Projects", href: "#projects", onClick: () => navigateToSection("projects") },
+        { title: "Gallery", href: "#gallery", onClick: () => navigateToSection("gallery") },
+        { title: "Contact", href: "#contact", onClick: () => navigateToSection("contact") },
+    ];
+
     return (
         <>
             <div className="h-20" />
@@ -56,8 +71,18 @@ export function Navbar() {
                 transition={{ duration: 0.35, ease: "easeInOut" }}
                 className="fixed top-0 w-full z-[100] bg-background/0 backdrop-blur-sm"
             >
-                <div className="relative w-full flex items-center justify-center py-6">
-                    <div className="flex items-center justify-center gap-16">
+                <div className="relative w-full flex items-center justify-between py-6 px-4 md:px-6 lg:justify-center">
+                    {/* Mobile menu button */}
+                    <button
+                        className="block lg:hidden text-foreground"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
+                    </button>
+
+                    {/* Desktop navigation */}
+                    <div className="hidden lg:flex items-center justify-center gap-16">
                         <div className="relative">
                             <Menu setActive={setActive}>
                                 <MenuItem setActive={setActive} active={active} item="Home">
@@ -158,7 +183,38 @@ export function Navbar() {
                         </div>
                         <ThemeToggle />
                     </div>
+
+                    {/* Always show theme toggle on mobile */}
+                    <div className="block lg:hidden">
+                        <ThemeToggle />
+                    </div>
                 </div>
+
+                {/* Mobile menu */}
+                {mobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="lg:hidden bg-background border-b border-border py-4"
+                    >
+                        <nav className="container px-4 flex flex-col space-y-4">
+                            {mobileLinks.map((link, index) => (
+                                <a
+                                    key={index}
+                                    href={link.href}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        link.onClick();
+                                    }}
+                                    className="text-foreground hover:text-primary py-2 transition-colors"
+                                >
+                                    {link.title}
+                                </a>
+                            ))}
+                        </nav>
+                    </motion.div>
+                )}
             </motion.div>
         </>
     );

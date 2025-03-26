@@ -61,30 +61,30 @@ export function ProjectsSection() {
     const isExpanded = visibleProjects > initialProjectCount;
 
     return (
-        <section id="projects" className="py-16 md:py-24 bg-muted/50">
+        <section id="projects" className="py-12 md:py-16 lg:py-24 bg-muted/50">
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="space-y-2">
                         <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Portfolio</div>
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">My Projects</h2>
-                        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">My Projects</h2>
+                        <p className="max-w-[900px] text-muted-foreground text-sm md:text-base lg:text-xl/relaxed">
                             Check out some of my recent work and personal projects.
                         </p>
                     </div>
                 </div>
 
-                {/* Category Tabs */}
-                <div className="flex justify-center mt-10 mb-12">
-                    <div className="inline-flex items-center rounded-md border bg-muted p-1 text-muted-foreground shadow-sm">
+                {/* Category Tabs - Scrollable on mobile */}
+                <div className="flex justify-start md:justify-center mt-8 md:mt-10 mb-8 md:mb-12 overflow-x-auto pb-2 px-1">
+                    <div className="inline-flex items-center rounded-md border bg-muted p-1 text-muted-foreground shadow-sm whitespace-nowrap">
                         {categoryInfo.map((category) => (
                             <button
                                 key={category.id}
                                 onClick={() => {
                                     setActiveCategory(category.id);
-                                    setVisibleProjects(initialProjectCount); // Reset visible count when changing category
+                                    setVisibleProjects(initialProjectCount);
                                 }}
                                 className={cn(
-                                    "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-4 py-2 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+                                    "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-xs sm:text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
                                     activeCategory === category.id
                                         ? "bg-background text-foreground shadow-sm"
                                         : "hover:bg-background/40"
@@ -99,7 +99,7 @@ export function ProjectsSection() {
                 {filteredCategories.length > 0 ? (
                     <>
                         {/* Projects Display */}
-                        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mt-12">
+                        <div className="mx-auto grid max-w-6xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-8 md:mt-12">
                             {visibleProjectsList.map((project, index) => (
                                 <ProjectCard key={index} project={project} />
                             ))}

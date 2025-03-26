@@ -168,17 +168,17 @@ export function FooterSection() {
 
     return (
         <footer id="contact" className="bg-black dark:bg-black text-white" ref={footerRef}>
-            <div className="container mx-auto px-6 py-16">
+            <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-10"
+                    className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 md:gap-10"
                 >
                     {/* About Section */}
                     <motion.div variants={itemVariants} className="flex flex-col space-y-4">
-                        <h2 className="text-2xl font-bold">About Me</h2>
-                        <p className="text-gray-300">
+                        <h2 className="text-xl md:text-2xl font-bold">About Me</h2>
+                        <p className="text-gray-300 text-sm md:text-base">
                             I&apos;m a passionate full-stack developer dedicated to creating exceptional digital experiences with cutting-edge technologies.
                         </p>
                         <div className="flex space-x-3 mt-4 flex-wrap">
@@ -199,15 +199,15 @@ export function FooterSection() {
                         </div>
                     </motion.div>
 
-                    {/* Quick Links */}
-                    <motion.div variants={itemVariants} className="flex flex-col space-y-4">
-                        <h2 className="text-2xl font-bold">Quick Links</h2>
-                        <ul className="space-y-2">
+                    {/* Quick Links - Hidden on mobile to save space */}
+                    <motion.div variants={itemVariants} className="flex-col space-y-4 hidden md:flex">
+                        <h2 className="text-xl md:text-2xl font-bold">Quick Links</h2>
+                        <ul className="space-y-2 grid grid-cols-2 md:block">
                             {quickLinks.map((link, index) => (
                                 <li key={index}>
                                     <Link
                                         href={link.url}
-                                        className="text-gray-300 hover:text-primary transition duration-300 flex items-center"
+                                        className="text-gray-300 hover:text-primary transition duration-300 flex items-center text-sm md:text-base"
                                     >
                                         <span className="mr-2">→</span> {link.name}
                                     </Link>
@@ -218,7 +218,7 @@ export function FooterSection() {
 
                     {/* Contact Info */}
                     <motion.div variants={itemVariants} className="flex flex-col space-y-4">
-                        <h2 className="text-2xl font-bold">Contact Me</h2>
+                        <h2 className="text-xl md:text-2xl font-bold">Contact Me</h2>
                         <ul className="space-y-4">
                             {contactInfo.map((info, index) => (
                                 <li key={index} className="flex items-center space-x-3">
@@ -227,7 +227,7 @@ export function FooterSection() {
                                     </div>
                                     <a
                                         href={info.url}
-                                        className="text-gray-300 hover:text-primary transition duration-300"
+                                        className="text-gray-300 hover:text-primary transition duration-300 text-sm md:text-base overflow-hidden overflow-ellipsis"
                                     >
                                         {info.value}
                                     </a>
@@ -278,9 +278,9 @@ export function FooterSection() {
 
                 <motion.div
                     variants={itemVariants}
-                    className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-400"
+                    className="border-t border-gray-800 mt-12 md:mt-16 pt-6 md:pt-8 text-center text-gray-400"
                 >
-                    <p>© {new Date().getFullYear()} Chamikara Kodithuwakku. All rights reserved.</p>
+                    <p className="text-xs md:text-sm">© {new Date().getFullYear()} Chamikara Kodithuwakku. All rights reserved.</p>
                 </motion.div>
             </div>
         </footer>
