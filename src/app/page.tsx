@@ -2,18 +2,24 @@ import Image from "next/image";
 import { AboutSection } from "@/components/about-section";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { HeroSection } from "@/components/hero-section";
+import { GallerySection } from "@/components/gallery-section";
 
 export default function Home() {
   return (
     <div className="min-h-screen font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col">
         {/* Hero Section with animated background */}
-        <BackgroundBeamsWithCollision className="min-h-screen">
+        <BackgroundBeamsWithCollision className="min-h-[90vh]">
           <HeroSection />
         </BackgroundBeamsWithCollision>
 
         {/* About Section without background beams */}
         <AboutSection />
+
+        {/* Gallery Section */}
+        <section id="gallery" className="py-8 md:py-16">
+          <GallerySection />
+        </section>
       </main>
 
       <footer className="flex gap-[24px] flex-wrap items-center justify-center p-8">

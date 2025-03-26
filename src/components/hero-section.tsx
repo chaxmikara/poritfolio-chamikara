@@ -7,7 +7,7 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 export function HeroSection() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center py-20 md:py-32 overflow-hidden">
+        <section className="relative flex items-center justify-center py-10 md:py-20 overflow-hidden">
             <div className="container px-4 md:px-6">
                 <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
                     <div className="flex flex-col justify-center space-y-4">
